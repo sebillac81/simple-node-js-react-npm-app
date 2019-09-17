@@ -27,8 +27,8 @@
 
     - name: Crear acceso directo 
       file:
-        src: "{{SOURCE_FOLDER}}../build"
-        dest: "{{SOURCE_FOLDER}}/build"
+        src: "../build"
+        dest: "build"
         state: link
 
     - name: Copiar archivos
