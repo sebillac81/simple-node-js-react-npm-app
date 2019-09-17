@@ -6,7 +6,6 @@ pipeline {
     stages {
         stage('Build') {
             agent {
-                label 'node'
                 docker {
                     image 'node:6-alpine' 
                     args '-p 3000:3000' 
@@ -18,7 +17,6 @@ pipeline {
         }
         stage('Test') { 
             agent {
-                label 'node'
                 docker {
                     image 'node:6-alpine' 
                     args '-p 3000:3000' 
@@ -30,7 +28,9 @@ pipeline {
         }
         stage('Deliver') {
             agent {
-                docker { image 'ansible:ubuntu1604' }
+                docker { 
+                    image 'ansible:ubuntu1604' 
+                }
             }
             steps {
                 sh './infraestructura/provision.sh inventory.demo1'
