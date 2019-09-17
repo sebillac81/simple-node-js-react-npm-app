@@ -22,6 +22,10 @@
     - name: Reiniciar el servicio httpd
       systemd: name=httpd state=restarted daemon_reload=yes
 
+- hosts: desplegar
+  become: yes
+
+  tasks:
     - name: Copiar archivos
       copy:
         src: build/

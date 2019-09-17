@@ -37,5 +37,16 @@ pipeline {
                 sh './infraestructura/provision.sh ./infraestructura/inventory.demo1'
             }
         }
+
+        stage('Desplegar') {
+            agent {
+                docker { 
+                    image 'mullnerz/ansible-playbook'
+                }
+            }
+            steps {
+                sh './infraestructura/provision.sh ./infraestructura/inventory.demo1.deploy'
+            }
+        }
     }
 }
