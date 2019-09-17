@@ -33,7 +33,7 @@ pipeline {
                 }
             }
             steps {
-                sh './infraestructura/provision.sh inventory.demo1'
+                sh './infraestructura/provision.sh ./infraestructura/inventory.demo1'
             }
         }
     }
