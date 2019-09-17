@@ -3,8 +3,5 @@
   become_user: root
 
   tasks:
-    - name: Instalar Apache httpd rpm
-      yum: name=httpd update_cache=yes 
-
     - name: Iniciar el servicio httpd
       systemd: name=httpd state=started enabled=yes
