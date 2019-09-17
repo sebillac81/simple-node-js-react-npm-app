@@ -5,7 +5,7 @@
     - name: Instalar Apache httpd rpm
       yum: name=httpd update_cache=yes
 
-    - name: Asegurar que selinux esté deshabilitado  # Necesario para cambiar el puerto de apache
+    - name: Asegurar que selinux este deshabilitado  # Necesario para cambiar el puerto de apache
       selinux: state=permissive policy=targeted
 
     - name: Asegurar que httpd exponga el puerto correcto
@@ -15,9 +15,6 @@
         line: 'Listen 4040'
         state: 'present'
         backrefs: yes
-
-    - name: Reiniciar el servicio httpd
-      systemd: name=httpd state=restarted daemon_reload=yes
 
     - name: Instalar unzip
       yum: name=unzip update_cache=yes
