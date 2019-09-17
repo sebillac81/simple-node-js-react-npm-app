@@ -29,7 +29,7 @@ pipeline {
         stage('Deliver') {
             agent {
                 docker { 
-                    image 'ansible/ubuntu16.04-ansible' 
+                    image 'ansible/ubuntu14.04-ansible'
                 }
             }
             steps {
