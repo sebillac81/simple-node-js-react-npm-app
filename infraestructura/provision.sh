@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 set -e -u
 BASEDIR=`dirname ${BASH_SOURCE[0]} | xargs readlink -f`
 
