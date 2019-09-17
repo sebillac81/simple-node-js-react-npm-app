@@ -20,6 +20,9 @@ pipeline {
             }
         }
         stage('Deliver') {
+            agent {
+                docker { image 'ansible:ubuntu1604' }
+            }
             steps {
                 sh './infraestructura/provision.sh inventory.demo1'
             }
