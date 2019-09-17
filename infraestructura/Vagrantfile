@@ -1,0 +1,35 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  # Set machine name
+  config.vm.define "devops"
+
+  config.vm.box = "centos/7"
+
+  # Port forwarding
+  # Frontend
+  config.vm.network :forwarded_port, guest: 4040, host: 4040
+  # SSH
+  config.vm.network :forwarded_port, guest: 22, host: 2222, host_ip: "0.0.0.0", id: "ssh", auto_correct: true
+
+  # If true, then any SSH connections made will enable agent forwarding.
+  config.ssh.pty = true
+
+  # If true, Vagrant will automatically insert a keypair to use for SSH,
+  # replacing Vagrant's default insecure key inside the machine if detected.
+  config.ssh.insert_key = false
+
+  config.vm.provider :virtualbox do |vb|
+    # Use VBoxManage to customize the VM. For example to change memory:
+    vb.customize ["modifyvm", :id, "--memory", "1024"]
+
+    # Change machine name for VirtualBox Manager
+    vb.name = "devops"
+  end
+
+end

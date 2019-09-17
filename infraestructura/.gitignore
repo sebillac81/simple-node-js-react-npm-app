@@ -1,0 +1,9 @@
+.vagrant/
+target/
+
+# Ansible
+ansible_roles/
+playbook.retry
+
+# Descarta archivos de Mac
+.DS_Store
