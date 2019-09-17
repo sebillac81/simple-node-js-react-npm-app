@@ -22,9 +22,6 @@
     - name: Reiniciar el servicio httpd
       systemd: name=httpd state=restarted daemon_reload=yes
 
-    - name: Instalar unzip
-      yum: name=unzip update_cache=yes
-
     - name: Copiar archivos
       copy:
         src: build/
