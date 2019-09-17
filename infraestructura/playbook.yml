@@ -2,6 +2,7 @@
   become: yes
   tasks:
     - name: Instalar Apache httpd rpm
-      yum: name=httpd update_cache=yes
+      yum: name=httpd update_cache=yes 
+
     - name: Iniciar el servicio httpd
       systemd: name=httpd state=started enabled=yes
