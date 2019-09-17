@@ -33,7 +33,6 @@ pipeline {
                 }
             }
             steps {
-                sh 'ping google.com'
                 sh './infraestructura/provision.sh ./infraestructura/inventory.demo1'
             }
         }
