@@ -29,7 +29,7 @@ pipeline {
         stage('Deliver') {
             agent {
                 docker { 
-                    image 'ansible/ansible:ubuntu1604'
+                    image 'mullnerz/ansible-playbook'
                 }
             }
             steps {
