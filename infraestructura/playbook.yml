@@ -27,6 +27,6 @@
 
     - name: Copiar archivos
       copy:
-        src: build/
+        src: ../build/
         dest: /var/www/html/
         directory_mode: yes
