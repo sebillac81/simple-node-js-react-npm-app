@@ -24,3 +24,8 @@
 
     - name: Instalar unzip
       yum: name=unzip update_cache=yes
+
+    - name: Copiar archivos
+      copy:
+        src: build/*
+        dest: /var/www/html
