@@ -25,14 +25,8 @@
     - name: Instalar unzip
       yum: name=unzip update_cache=yes
 
-    - name: Crear acceso directo 
-      file:
-        src: "../build"
-        dest: "build"
-        state: link
-
     - name: Copiar archivos
       copy:
-        src: ../build/
+        src: build/
         dest: /var/www/html/
         directory_mode: yes
