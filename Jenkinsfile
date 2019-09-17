@@ -27,7 +27,7 @@ pipeline {
                 sh './jenkins/scripts/test.sh' 
             }
         }
-        stage('Deliver') {
+        stage('Aprovisionar') {
             agent {
                 docker { 
                     image 'mullnerz/ansible-playbook'
