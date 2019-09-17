@@ -3,23 +3,3 @@
   tasks:
     - name: Instalar Apache httpd rpm
       yum: name=httpd update_cache=yes
-
-    - name: Iniciar el servicio httpd
-      systemd: name=httpd state=started enabled=yes
-
-    - name: Asegurar que selinux esté deshabilitado  # Necesario para cambiar el puerto de apache
-      selinux: state=permissive policy=targeted
-
-    - name: Asegurar que httpd exponga el puerto correcto
-      lineinfile:
-        dest: "/etc/httpd/conf/httpd.conf"
-        regexp: "^Listen 80$"
-        line: "Listen {{apache_puerto}}"
-        state: "present"
-        backrefs: yes
-
-    - name: Reiniciar el servicio httpd
-      systemd: name=httpd state=restarted daemon_reload=yes
-
-    - name: Instalar unzip
-      yum: name=unzip update_cache=yes
