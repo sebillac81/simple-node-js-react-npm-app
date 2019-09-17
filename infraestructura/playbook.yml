@@ -4,7 +4,7 @@
     - name: Asegurar que los repositorios esten actualizados
       shell: "{{item}}"
       with_items:
-      - "subscription-manager register --username {{usermanager}} --password {{passmanager}} --auto-attach --force"
+      - "subscription-manager register --username usuario --password clave --auto-attach --force"
       when: ansible_distribution == 'RedHat'
 
     - name: Instalar Apache httpd rpm
@@ -17,7 +17,7 @@
       lineinfile:
         dest: "/etc/httpd/conf/httpd.conf"
         regexp: '^Listen 80$'
-        line: 'Listen 4040'
+        line: 'Listen 4041'
         state: 'present'
         backrefs: yes
 
