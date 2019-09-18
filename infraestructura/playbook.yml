@@ -33,4 +33,4 @@
   - name: Copy file
     copy:
       src: ../build/
-      dest: /sitio/
+      dest: /
