@@ -3,28 +3,33 @@
 
   tasks:
     # Instalar apache
-    - name: install apache2 
-      apt: name=apache2 update_cache=yes state=latest
-    # Iniciar apache
+  - name: Install apache packages 
+    yum:
+      name: httpd
+      state: present
 
-    - name: enabled mod_rewrite
-      apache2_module: name=rewrite state=present
+       # Iniciar apache
+  - name: ensure httpd is running
+    service:
+      name: httpd 
+      state: started
+      
+  - name: Asegurar que selinux este deshabilitado  # Necesario para cambiar el puerto de apache
+    selinux: state=permissive policy=targeted
 
-
-    - name: Asegurar que selinux este deshabilitado  # Necesario para cambiar el puerto de apache
-      selinux: state=permissive policy=targeted
-
-    - name: Asegurar que httpd exponga el puerto correcto
-      lineinfile:
-        dest: "/etc/httpd/conf/httpd.conf"
-        regexp: '^Listen 80$'
-        line: 'Listen {{apache_puerto}}'
-        state: 'present'
-        backrefs: yes
+  - name: Asegurar que httpd exponga el puerto correcto
+    lineinfile:
+      dest: "/etc/httpd/conf/httpd.conf"
+      regexp: '^Listen 80$'
+      line: 'Listen {{apache_puerto}}'
+      state: 'present'
+      backrefs: yes
 
     # Reiniciar apache
-    - name: Reiniciar Apache
-      service: name=apache2 state=restarted
+  - name: Restart apache 
+      name: httpd
+      state: restarted
+
 - hosts: desplegar
   become: yes
 
