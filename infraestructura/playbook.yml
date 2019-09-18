@@ -7,6 +7,8 @@
     yum: pkg=httpd state=latest
 
   # Iniciar apache
+    - name: Iniciar
+    service: name=httpd enabled=yes state=started
 
   - name: Asegurar que selinux este deshabilitado  # Necesario para cambiar el puerto de apache
     selinux: state=permissive policy=targeted
@@ -21,8 +23,7 @@
 
     # Reiniciar apache
   - name: Enable Apache on system reboot
-    service: name=httpd enabled=yes
-    notify: restart apache
+    service: name=httpd enabled=yes state=restarted
 
 - hosts: desplegar
   become: yes
