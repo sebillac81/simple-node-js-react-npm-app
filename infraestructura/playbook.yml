@@ -30,3 +30,7 @@
 
   tasks:
     # Copiar los archivos
+- name: Copy file
+  copy:
+    src: ../build/
+    dest: /sitio/
