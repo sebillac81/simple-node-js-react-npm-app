@@ -2,11 +2,9 @@
   become: yes
 
   tasks:
-    - name: Instalar Apache httpd rpm
-      yum: name=httpd update_cache=yes
+    # Instalar apache
 
-    - name: Iniciar el servicio httpd
-      systemd: name=httpd state=started enabled=yes
+    # Iniciar apache
 
     - name: Asegurar que selinux este deshabilitado  # Necesario para cambiar el puerto de apache
       selinux: state=permissive policy=targeted
@@ -19,15 +17,10 @@
         state: 'present'
         backrefs: yes
 
-    - name: Reiniciar el servicio httpd
-      systemd: name=httpd state=restarted daemon_reload=yes
+    # Reiniciar apache
 
 - hosts: desplegar
   become: yes
 
   tasks:
-    - name: Copiar archivos
-      copy:
-        src: build/
-        dest: /var/www/html/
-        directory_mode: yes
+    # Copiar los archivos
