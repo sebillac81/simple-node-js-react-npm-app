@@ -3,7 +3,8 @@
 
   tasks:
     # Instalar apache
-
+    - name: install apache2 
+      apt: name=apache2 update_cache=yes state=latest
     # Iniciar apache
 
     - name: Asegurar que selinux este deshabilitado  # Necesario para cambiar el puerto de apache
@@ -18,7 +19,8 @@
         backrefs: yes
 
     # Reiniciar apache
-
+    - name: Reiniciar Apache
+      service: name=apache2 state=restarted
 - hosts: desplegar
   become: yes
 
