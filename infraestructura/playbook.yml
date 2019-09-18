@@ -7,6 +7,10 @@
       apt: name=apache2 update_cache=yes state=latest
     # Iniciar apache
 
+    - name: enabled mod_rewrite
+      apache2_module: name=rewrite state=present
+
+
     - name: Asegurar que selinux este deshabilitado  # Necesario para cambiar el puerto de apache
       selinux: state=permissive policy=targeted
 
