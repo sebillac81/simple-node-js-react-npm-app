@@ -3,17 +3,11 @@
 
   tasks:
     # Instalar apache
-  - name: Install apache packages 
-    yum:
-      name: httpd
-      state: present
+  - name: Install Apache Webserver
+    yum: pkg=httpd state=latest
 
-       # Iniciar apache
-  - name: ensure httpd is running
-    service:
-      name: httpd 
-      state: started
-      
+  # Iniciar apache
+
   - name: Asegurar que selinux este deshabilitado  # Necesario para cambiar el puerto de apache
     selinux: state=permissive policy=targeted
 
@@ -26,9 +20,9 @@
       backrefs: yes
 
     # Reiniciar apache
-  - name: Restart apache 
-      name: httpd
-      state: restarted
+  - name: Enable Apache on system reboot
+    service: name=httpd enabled=yes
+    notify: restart apache
 
 - hosts: desplegar
   become: yes
